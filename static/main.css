@@ -1,0 +1,48 @@
+/*field*/
+#field {
+    position: absolute;
+    overflow: auto;
+    width: 423px;
+    height: 425px;
+    display: flex;
+    align-items: flex-end;
+    background-image: url(./images/field1.jpg);
+    margin-left: 40px;
+    margin-top: 20px;
+}
+
+/*performer*/
+img {
+    /* step = 20.4 */
+    position: relative;
+    left: 3.6px;
+    bottom: 3.6px;
+    width: 15px;
+    height: 15px;
+}
+
+/*text area for code*/
+textarea {
+    margin-top: 20px;
+    margin-left: 490px;
+    height: 420px;
+    width: 600px;
+    overflow: auto;
+    position: absolute;
+    background-color: rgb(41, 41, 41);
+    color:white;
+    font-size: 10;
+    resize: none;
+}
+
+.div-buttons{
+    margin-top: 20px;
+    margin-left: 40px;
+}
+
+button{
+    height: 25px;
+    width: 75px;
+    background-color: rgb(41, 41, 41);
+    color: white;
+}
