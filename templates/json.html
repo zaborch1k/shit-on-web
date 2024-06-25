@@ -1,0 +1,65 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type=text/javascript>
+        $(function() {
+          $('a#run').on('click', function(e) {
+            e.preventDefault()
+            $.getJSON ('/background_process_test', {code: $("textarea").val()},
+                function(data){
+                    let x = document.getElementById("performer")
+                    x.style.marginLeft = data;
+                    x.style.transition = "1s";;
+                });
+            return false;
+          });
+        });
+</script>
+
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+        <title>shit++ on web</title>
+    </head>
+    
+    <body style="background-color: rgb(41, 41, 41)">
+        <div class="div-buttons">
+            </form>
+                <textarea name = "code" autocomplete="off" autofocus="on"></textarea>
+                <a href=# id=run><button class='btn btn-default' value=code>run</button></a>
+             </form>
+            
+            <button name="stop">stop</button>
+            <button name="save">save</button>
+            <button name="open">open</button>
+        </div>
+
+        <div id="field">
+            <img id='performer' src="static\images\performer.jpg">
+        </div>
+    </body>
+
+</html>
+
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type=text/javascript>
+        $(function() {
+          $('a#test').on('click', function(e) {
+            e.preventDefault()
+            $.getJSON('/background_process_test',
+                function(data) {
+              //do nothing
+            });
+            return false;
+          });
+        });
+</script>
+
+
+<div class='container'>
+    <h3>Test</h3>
+        <form>
+            <a href=# id=test><button class='btn btn-default'>Test</button></a>
+        </form>
+
+</div> -->
