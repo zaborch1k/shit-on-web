@@ -3,12 +3,13 @@
         $(function() {
           $('a#run').on('click', function(e) {
             e.preventDefault()
-            $.getJSON ('/background_process_test', {code: $("textarea").val()},
-                function(data){
+
+            function myCallback(result){
                     let x = document.getElementById("performer")
-                    x.style.marginLeft = data;
+                    x.style.marginLeft = result;
                     x.style.transition = "1s";;
-                });
+                };
+            $.get('/background_process_test', {code: $("textarea").val()}, myCallback, 'text');
             return false;
           });
         });
