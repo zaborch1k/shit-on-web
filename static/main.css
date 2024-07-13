@@ -2,11 +2,11 @@
 #field {
     position: absolute;
     overflow: auto;
-    width: 423px;
-    height: 425px;
+    width: 453px;
+    height: 453px;
     display: flex;
     align-items: flex-end;
-    background-image: url(./images/field1.jpg);
+    background-image: url(./images/field1.png);
     margin-left: 40px;
     margin-top: 20px;
 }
@@ -14,11 +14,11 @@
 /*performer*/
 img {
     /* step = 20.4 */
-    position: relative;
-    left: 3.6px;
-    bottom: 3.6px;
-    width: 15px;
-    height: 15px;
+    position: absolute;
+    left: 4px;
+    bottom: 4px;
+    width: 16px;
+    height: 16px;
 }
 
 /*text area for code*/

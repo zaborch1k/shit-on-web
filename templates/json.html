@@ -1,18 +1,73 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 <script type=text/javascript>
         $(function() {
           $('a#run').on('click', function(e) {
-            e.preventDefault()
+            e.preventDefault()  
 
             function myCallback(result){
-                    let x = document.getElementById("performer")
-                    x.style.marginLeft = result;
-                    x.style.transition = "1s";;
-                };
-            $.get('/background_process_test', {code: $("textarea").val()}, myCallback, 'text');
+              let move_data = result['move-data'].split(' ')
+              let err = result['err'];
+              
+              $("#field").parent().css({position: 'relative'});
+              $("img").css({bottom: '4px', left: '4px', position:'absolute'});
+
+              for (let i = 0; i < move_data.length; i += 2) {
+                var num = move_data[i + 1];
+                var step = 21.5;
+
+                if (move_data[i] == 'RIGHT') {
+                  $( "img" ).animate({
+                    left: `+=${step * num}`,
+                  }, 200 * num);
+                  
+                } else if (move_data[i] == 'LEFT') {
+                  $( "img" ).animate({
+                    left: `-=${step * num}`,
+                  }, 200 * num);
+
+                } else if (move_data[i] == 'UP') {
+                  $( "img" ).animate({
+                    bottom: `+=${step * num}`,
+                  }, 200 * num,);
+
+                } else if (move_data[i] == 'DOWN') {
+                  $( "img" ).animate({
+                    bottom: `-=${step * num}`,
+                  }, 200 * num, );
+                }
+                
+                // обработчик сообщений об ошибке
+              }
+            };
+
+            $.getJSON('/run', {code: $("textarea").val()}, myCallback);
             return false;
           });
         });
+
+        $(function() {
+          $('a#stop').on('click', function(e) {
+            e.preventDefault()
+            $("#field").parent().css({position: 'relative'});
+            $("img").css({bottom: '4px', left: '4px', position:'absolute'});
+
+          })
+        })
+
+        $(function() {
+          $('a#save').on('click', function(e) {
+            e.preventDefault()
+            $.get('/save', {code: $("textarea").val()});
+            return false;
+          })
+        })
+
+        $(function() {
+          e.preventDefault()
+          $('a#open').on('click', function(e) {
+          })
+        })
 </script>
 
 <html lang="en-US">
@@ -30,13 +85,13 @@
                 <a href=# id=run><button class='btn btn-default' value=code>run</button></a>
              </form>
             
-            <button name="stop">stop</button>
-            <button name="save">save</button>
-            <button name="open">open</button>
+             <a href=# id=stop><button class='btn btn-default'>stop</button></a>
+             <a href=# id=save><button class='btn btn-default'>save</button></a>
+             <a href=# id=open><button class='btn btn-default'>open</button></a>
         </div>
 
         <div id="field">
-            <img id='performer' src="static\images\performer.jpg">
+            <img id='performer' src="static\images\performer.png">
         </div>
     </body>
 
@@ -64,3 +119,8 @@
         </form>
 
 </div> -->
+
+<!-- for (let d of move_data) {
+    performer.style.left = parseInt(getComputedStyle(performer).left) + 20.3 * 2 + 'px';
+    performer.style.transition = "1s";
+} -->
